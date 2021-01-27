@@ -1,0 +1,15 @@
+.dialog {
+  text-decoration: none;
+  color: rgb(2, 36, 2);
+}
+.active {
+  color: rgb(255, 145, 0);
+}
+.items {
+  padding-bottom: 0.5rem;
+}
+.items img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}

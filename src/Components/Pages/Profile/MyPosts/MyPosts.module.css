@@ -1,0 +1,8 @@
+.wrapper {
+  padding-left: 1rem;
+}
+.button {
+  background-color: rgb(190, 250, 244);
+  border-radius: 5px;
+  margin: auto 98px;
+}

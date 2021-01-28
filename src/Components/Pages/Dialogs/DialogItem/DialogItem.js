@@ -11,7 +11,7 @@ const DialogItem = (props) => {
         className={`${styles.dialog} ${styles.items}`}
         activeClassName={styles.active}
       >
-        <img src={props.ava} />
+        <img src={props.ava} alt="avatar" />
         {props.name}
       </NavLink>
     </div>

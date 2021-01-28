@@ -14,13 +14,14 @@ const ProfileInfo = (props) => {
   return (
     <div className={styles.profileWrapper}>
       <div className={styles.view}>
-        <img src={backgroundImage} />
+        <img src={backgroundImage} alt="Sunset" />
       </div>
       <div className={styles.avatar}>
         <img
           src={
             props.profile.photos.large ? props.profile.photos.large : maleUser
           }
+          alt="Avatar"
         />
       </div>
       <div className={styles.name}>{props.profile.fullName}</div>
@@ -28,7 +29,10 @@ const ProfileInfo = (props) => {
       <div className={styles.description}>{props.profile.aboutMe}</div>
 
       <div className={styles.jobRequest}>
-        <img src={props.profile.lookingForAJob ? check : cross} />
+        <img
+          src={props.profile.lookingForAJob ? check : cross}
+          alt="Job Request"
+        />
       </div>
 
       <div className={styles.jobRequestDescription}>

@@ -19,13 +19,14 @@ const SearchUsers = (props) => {
                 <img
                   className={styles.photo}
                   src={u.photos.small != null ? u.photos.small : userPhoto}
+                  alt="avatar"
                 />
               </NavLink>
             </div>
             <div>
               {u.isFollowed ? (
                 <button
-                  disabled={props.followingInProgress.some((id) => id == u.id)}
+                  disabled={props.followingInProgress.some((id) => id === u.id)}
                   className={styles.btn_red}
                   onClick={() => {
                     props.unfollow(u.id);
@@ -35,7 +36,7 @@ const SearchUsers = (props) => {
                 </button>
               ) : (
                 <button
-                  disabled={props.followingInProgress.some((id) => id == u.id)}
+                  disabled={props.followingInProgress.some((id) => id === u.id)}
                   className={styles.btn_blue}
                   onClick={() => {
                     props.follow(u.id);

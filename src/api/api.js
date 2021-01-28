@@ -23,3 +23,13 @@ export const usersAPI = {
     return instance.delete(`follow/${userId}`);
   },
 };
+export const authAPI = {
+  isAuth() {
+    return instance.get(`auth/me`);
+  },
+};
+export const profileAPI = {
+  setProfileData(userId) {
+    return instance.get(`profile/${userId}`);
+  },
+};

@@ -8,6 +8,7 @@ import DialogsContainer from "./Components/Pages/Dialogs/DialogsContainer";
 import SearchUsersContainer from "./Components/Pages/SearchUsers/SearchUsersContainer";
 import ProfileContainer from "./Components/Pages/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import Login from "./Components/Pages/Login/Login";
 
 const App = (props) => {
   return (
@@ -15,6 +16,7 @@ const App = (props) => {
       <HeaderContainer />
       <NavbarContainer data={props.state.navigation} />
       <div className="app-wrapper-content">
+        <Route path="/login" render={() => <Login />} />
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
         <Route path="/dialogs" render={() => <DialogsContainer />} />
         <Route

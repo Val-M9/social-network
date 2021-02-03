@@ -39,9 +39,9 @@ export const updateNewPostText = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
 });
-export const setProfileData = (userId) => {
+export const getProfile = (userId) => {
   return (dispatch) => {
-    profileAPI.setProfileData(userId).then((response) => {
+    profileAPI.getProfile(userId).then((response) => {
       dispatch(setUserProfile(response.data));
     });
   };

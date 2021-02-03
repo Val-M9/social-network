@@ -29,7 +29,7 @@ export const authAPI = {
   },
 };
 export const profileAPI = {
-  setProfileData(userId) {
+  getProfile(userId) {
     return instance.get(`profile/${userId}`);
   },
 };

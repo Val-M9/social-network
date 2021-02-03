@@ -5,6 +5,7 @@ import backgroundImage from "../../../../assets/images/view.jpg";
 import check from "../../../../assets/images/check.png";
 import cross from "../../../../assets/images/cross.png";
 import maleUser from "../../../../assets/images/maleUser.png";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -39,6 +40,9 @@ const ProfileInfo = (props) => {
         {props.profile.lookingForAJobDescription}
       </div>
       <div className={styles.contacts}>{props.profile.contacts.twitter}</div>
+      <div className={styles.status}>
+        <ProfileStatus status={"Hello"} />
+      </div>
     </div>
   );
 };

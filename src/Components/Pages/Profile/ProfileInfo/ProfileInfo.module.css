@@ -3,7 +3,7 @@
     "v v v"
     "a n j"
     "a d jD"
-    "a c c";
+    "a s c";
 
   display: grid;
   grid-template-columns: 0.75fr 1fr 1fr;
@@ -54,4 +54,7 @@
   align-self: end;
   padding-right: 3rem;
   padding-bottom: 1rem;
+}
+.status {
+  grid-area: s;
 }

@@ -41,7 +41,10 @@ const ProfileInfo = (props) => {
       </div>
       <div className={styles.contacts}>{props.profile.contacts.twitter}</div>
       <div className={styles.status}>
-        <ProfileStatus status={"Hello"} />
+        <ProfileStatus
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
       </div>
     </div>
   );

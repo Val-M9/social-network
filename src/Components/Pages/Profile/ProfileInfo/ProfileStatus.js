@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 
 const ProfileStatus = (props) => {
-  const [isEdit, setEdit] = useState(false);
-  const handleInput = () => {
-    setEdit(!isEdit);
+  const [editInput, setEditInput] = useState(false);
+  const [status, setStatus] = useState(props.status);
+
+  const toggleInput = () => {
+    setEditInput(!editInput);
+    props.updateStatus(status);
   };
+  const onStatusChange = (event) => {
+    setStatus(event.currentTarget.value);
+  };
+
   return (
-    <div onDoubleClick={handleInput}>
-      {isEdit ? (
-        <input autoFocus={true} placeholder={"hodor"}></input>
+    <div onDoubleClick={toggleInput}>
+      {editInput ? (
+        <input
+          value={status}
+          onChange={onStatusChange}
+          onBlur={toggleInput}
+          autoFocus={true}
+        ></input>
       ) : (
-        <span>{props.status}</span>
+        <span>{props.status || "Here can be your status"}</span>
       )}
     </div>
   );

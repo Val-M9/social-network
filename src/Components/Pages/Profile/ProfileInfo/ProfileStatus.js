@@ -20,7 +20,6 @@ const ProfileStatus = (props) => {
     <div onDoubleClick={toggleInput}>
       {editInput ? (
         <input
-          onKeyPress={props.updateStatus}
           value={status}
           onChange={onStatusChange}
           onBlur={toggleInput}

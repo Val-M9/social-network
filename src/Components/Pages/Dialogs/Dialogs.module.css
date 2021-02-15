@@ -4,13 +4,12 @@
   padding: 1rem;
 }
 .textInput textarea {
-  border-radius: 10px;
+  border-radius: 4px;
   margin-top: 200px;
   padding-right: 50px;
 }
 .textInput button {
   background-color: rgb(190, 250, 244);
-  border-radius: 5px;
-  margin-left: 10px;
-  margin-bottom: 40px;
+  border-radius: 4px;
+  margin-top: 4px;
 }

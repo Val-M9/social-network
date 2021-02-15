@@ -1,4 +1,6 @@
 import { authAPI } from "../../api/api";
+import { FORM_ERROR } from "final-form";
+
 const SET_USER_DATA = "SET-USER-DATA";
 
 let inintialState = {
@@ -10,24 +12,43 @@ let inintialState = {
 const authReducer = (state = inintialState, action) => {
   switch (action.type) {
     case SET_USER_DATA:
-      return { ...state, ...action.data, isAuth: true };
+      return { ...state, ...action.payload };
     default:
       return state;
   }
 };
-export const setAuthUserData = (userId, email, login) => ({
+export const setAuthUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  data: { userId, email, login },
+  payload: { userId, email, login, isAuth },
 });
-export const getIsAuth = () => {
-  return (dispatch) => {
-    authAPI.isAuth().then((response) => {
+
+export const getIsAuth = () => (dispatch) => {
+  authAPI.isAuth().then((response) => {
+    if (response.data.resultCode === 0) {
+      let { id, email, login } = response.data.data;
+      dispatch(setAuthUserData(id, email, login, true));
+    }
+  });
+};
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+  authAPI
+    .login(email, password, rememberMe)
+    .then((response) => {
       if (response.data.resultCode === 0) {
-        let { id, email, login } = response.data.data;
-        dispatch(setAuthUserData(id, email, login));
+        dispatch(getIsAuth());
       }
+    })
+    .catch(() => {
+      return { [FORM_ERROR]: "Login Failed" };
     });
-  };
+};
+export const logout = () => (dispatch) => {
+  authAPI.logout().then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(setAuthUserData(null, null, null, false));
+    }
+  });
 };
 
 export default authReducer;

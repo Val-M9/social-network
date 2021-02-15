@@ -15,8 +15,10 @@ const MyPosts = (props) => {
   return (
     <div className={styles.wrapper}>
       <h4>My Posts</h4>
-      <AddPostForm onSubmit={onAddPost} />
-      {postItems}
+      <div className={styles.post}>
+        <AddPostForm onSubmit={onAddPost} />
+        {postItems}
+      </div>
     </div>
   );
 };

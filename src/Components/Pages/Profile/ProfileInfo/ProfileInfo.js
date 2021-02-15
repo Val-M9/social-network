@@ -30,16 +30,19 @@ const ProfileInfo = (props) => {
       <div className={styles.description}>{props.profile.aboutMe}</div>
 
       <div className={styles.jobRequest}>
+        Job request
         <img
           src={props.profile.lookingForAJob ? check : cross}
           alt="Job Request"
         />
       </div>
-
       <div className={styles.jobRequestDescription}>
         {props.profile.lookingForAJobDescription}
       </div>
-      <div className={styles.contacts}>{props.profile.contacts.twitter}</div>
+      <div className={styles.contacts}>
+        <h4>Contact Me</h4>
+        {props.profile.contacts.twitter}
+      </div>
       <div className={styles.status}>
         <ProfileStatus
           status={props.status}

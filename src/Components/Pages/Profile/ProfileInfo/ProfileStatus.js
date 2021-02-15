@@ -15,6 +15,11 @@ const ProfileStatus = (props) => {
   const onStatusChange = (event) => {
     setStatus(event.currentTarget.value);
   };
+  const onPressEnter = (event) => {
+    if (event.key === "Enter") {
+      toggleInput(status);
+    }
+  };
 
   return (
     <div onDoubleClick={toggleInput}>
@@ -22,6 +27,7 @@ const ProfileStatus = (props) => {
         <input
           value={status}
           onChange={onStatusChange}
+          onKeyDown={onPressEnter}
           onBlur={toggleInput}
           autoFocus={true}
         ></input>

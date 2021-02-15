@@ -1,9 +1,12 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { TextArea } from "../../../common/FormControls/FormControls";
+import { maxLengthCreator } from "../../../utils/validators";
 
 const AddPostForm = (props) => {
   return (
     <Form
+      name="addPost"
       onSubmit={(values) => {
         props.onSubmit(values);
       }}
@@ -11,7 +14,11 @@ const AddPostForm = (props) => {
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <div>
-            <Field component={"textarea"} name={"addNewPost"} />
+            <Field
+              validate={maxLengthCreator(10)}
+              component={TextArea}
+              name={"addNewPost"}
+            />
           </div>
           <button>Add Post</button>
         </form>

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import AddMessageForm from "./AddMessageForm";
+import SendMessageForm from "./SendMessageForm";
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsData.dialogs.map((d) => (
@@ -21,7 +21,7 @@ const Dialogs = (props) => {
       <div>{dialogsElements}</div>
       <div className={styles.textInput}>
         {messagesElements}
-        <AddMessageForm onSubmit={onSendMessage} />
+        <SendMessageForm onSubmit={onSendMessage} />
       </div>
     </div>
   );

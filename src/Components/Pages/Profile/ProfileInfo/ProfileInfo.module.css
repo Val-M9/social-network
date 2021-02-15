@@ -50,10 +50,14 @@
 }
 .contacts {
   grid-area: c;
-  justify-self: end;
-  align-self: end;
+
+  justify-self: center;
+  align-self: center;
   padding-right: 3rem;
   padding-bottom: 1rem;
+}
+.contacts h4 {
+  color: rgb(0, 41, 128);
 }
 .status {
   grid-area: s;

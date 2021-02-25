@@ -9,6 +9,14 @@ import {
 } from "../../../redux/Reducers/SearchUsersReducer";
 import SearchUsers from "./SearchUsers";
 import Preloader from "../../common/Preloader/Preloader";
+import {
+  getUsersData,
+  getUsersTotalCount,
+  getPageSize,
+  getCurrentPage,
+  getIsFetching,
+  getFollowingProgress,
+} from "../../../redux/Selectors/UserSelectors";
 
 class SearchUsersAPI extends React.Component {
   componentDidMount() {
@@ -43,12 +51,12 @@ let mapStateToProps = (state) => {
     userId: state.usersPage.users.map((u) => {
       return u.id;
     }),
-    usersData: state.usersPage.users,
-    usersTotalCount: state.usersPage.usersTotalCount,
-    pageSize: state.usersPage.pageSize,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    usersData: getUsersData(state),
+    usersTotalCount: getUsersTotalCount(state),
+    pageSize: getPageSize(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingProgress(state),
   };
 };
 

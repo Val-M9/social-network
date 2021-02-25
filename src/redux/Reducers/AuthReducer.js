@@ -23,7 +23,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
 });
 
 export const getIsAuth = () => (dispatch) => {
-  authAPI.isAuth().then((response) => {
+  return authAPI.isAuth().then((response) => {
     if (response.data.resultCode === 0) {
       let { id, email, login } = response.data.data;
       dispatch(setAuthUserData(id, email, login, true));
@@ -32,19 +32,20 @@ export const getIsAuth = () => (dispatch) => {
 };
 
 export const login = (email, password, rememberMe) => (dispatch) => {
-  authAPI
-    .login(email, password, rememberMe)
-    .then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(getIsAuth());
-      }
-    })
-    .catch(() => {
-      return { [FORM_ERROR]: "Login Failed" };
-    });
+  return authAPI.login(email, password, rememberMe).then((response) => {
+    if (response.data.resultCode === 0) {
+      dispatch(getIsAuth());
+    } else {
+      let message =
+        response.data.messages.length > 0
+          ? response.data.messages[0]
+          : "Serever error";
+      return { [FORM_ERROR]: message };
+    }
+  });
 };
 export const logout = () => (dispatch) => {
-  authAPI.logout().then((response) => {
+  return authAPI.logout().then((response) => {
     if (response.data.resultCode === 0) {
       dispatch(setAuthUserData(null, null, null, false));
     }

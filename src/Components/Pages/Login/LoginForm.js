@@ -6,14 +6,13 @@ import {
   composeValidators,
 } from "../../utils/validators";
 import styles from "./LoginForm.module.css";
-import { FORM_ERROR } from "final-form";
 
 const LoginForm = (props) => {
   return (
     <Form
       name="login"
       onSubmit={(values) => {
-        props.onSubmit(values);
+        return props.onSubmit(values);
       }}
     >
       {({ handleSubmit, submitError }) => (
@@ -21,16 +20,9 @@ const LoginForm = (props) => {
           <Field
             validate={composeValidators(required, maxLengthCreator(30))}
             name="email"
-          >
-            {({ input, meta }) => (
-              <div>
-                <input {...input} placeholder={"Login"} />
-                {(meta.error || meta.submitError) && meta.touched && (
-                  <span>{meta.error || meta.submitError}</span>
-                )}
-              </div>
-            )}
-          </Field>
+            component={Input}
+            placeholder={"Email"}
+          ></Field>
           <Field
             validate={composeValidators(required, maxLengthCreator(30))}
             name={"password"}
@@ -45,7 +37,9 @@ const LoginForm = (props) => {
               </div>
             )} */}
           </Field>
-          {submitError && <div>{submitError}</div>}
+          <div>
+            {submitError && <div style={{ color: "#800" }}>{submitError}</div>}
+          </div>
           <div>
             <Field component={"input"} name={"rememberMe"} type={"checkbox"} />
             Remember me

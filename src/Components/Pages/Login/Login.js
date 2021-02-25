@@ -6,7 +6,12 @@ import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
   const onSubmit = async (formData) => {
-    await props.login(formData.email, formData.password, formData.rememberMe);
+    const res = await props.login(
+      formData.email,
+      formData.password,
+      formData.rememberMe
+    );
+    return res;
   };
   if (props.isAuth) {
     return <Redirect to="/profile" />;

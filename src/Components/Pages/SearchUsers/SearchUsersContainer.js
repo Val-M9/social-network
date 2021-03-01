@@ -4,8 +4,9 @@ import {
   setCurrentPage,
   toggleFollowingProgress,
   getUsersTC,
-  follow,
-  unfollow,
+  toggleFollowing,
+  // follow,
+  // unfollow,
 } from "../../../redux/Reducers/SearchUsersReducer";
 import SearchUsers from "./SearchUsers";
 import Preloader from "../../common/Preloader/Preloader";
@@ -16,7 +17,7 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingProgress,
-} from "../../../redux/Selectors/UserSelectors";
+} from "../../../redux/Selectors/UsersSelectors";
 
 class SearchUsersAPI extends React.Component {
   componentDidMount() {
@@ -35,8 +36,9 @@ class SearchUsersAPI extends React.Component {
           usersData={this.props.usersData}
           usersTotalCount={this.props.usersTotalCount}
           pageSize={this.props.pageSize}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
+          toggleFollowing={this.props.toggleFollowing}
+          // follow={this.props.follow}
+          // unfollow={this.props.unfollow}
           currentPage={this.props.currentPage}
           onChangePage={this.onChangePage}
           followingInProgress={this.props.followingInProgress}
@@ -64,7 +66,8 @@ const SearchUsersContainer = connect(mapStateToProps, {
   setCurrentPage,
   toggleFollowingProgress,
   getUsersTC,
-  follow,
-  unfollow,
+  toggleFollowing,
+  // follow,
+  // unfollow,
 })(SearchUsersAPI);
 export default SearchUsersContainer;

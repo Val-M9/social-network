@@ -32,7 +32,11 @@ const ProfileStatus = (props) => {
           autoFocus={true}
         ></input>
       ) : (
-        <span>{props.status || "Here can be your status"}</span>
+        <span>
+          {props.status || (
+            <span style={{ color: "#999" }}>Here can be your status</span>
+          )}
+        </span>
       )}
     </div>
   );

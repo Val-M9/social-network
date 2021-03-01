@@ -29,7 +29,7 @@ const SearchUsers = (props) => {
                   disabled={props.followingInProgress.some((id) => id === u.id)}
                   className={styles.btn_red}
                   onClick={() => {
-                    props.unfollow(u.id);
+                    props.toggleFollowing(u.id);
                   }}
                 >
                   Unfollow
@@ -39,7 +39,7 @@ const SearchUsers = (props) => {
                   disabled={props.followingInProgress.some((id) => id === u.id)}
                   className={styles.btn_blue}
                   onClick={() => {
-                    props.follow(u.id);
+                    props.toggleFollowing(u.id);
                   }}
                 >
                   Follow

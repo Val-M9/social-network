@@ -1,6 +1,6 @@
 import { loginAPI } from "../../api/api";
 
-const LOGIN = "LOGIN";
+const LOGIN = "login/LOGIN";
 
 let inintialState = {
   email: "",
@@ -16,12 +16,11 @@ const loginReducer = (state = inintialState, action) => {
   }
 };
 export const setLogin = (email, password) => ({ type: LOGIN, email, password });
-export const LogIn = (email, password) => (dispatch) => {
-  loginAPI.logIn(email, password).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setLogin(email, password));
-    }
-  });
+export const LogIn = (email, password) => async (dispatch) => {
+  let response = await loginAPI.logIn(email, password);
+  if (response.data.resultCode === 0) {
+    dispatch(setLogin(email, password));
+  }
 };
 
 export default loginReducer;

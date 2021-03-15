@@ -14,3 +14,9 @@
 .loginBlock a {
   color: white;
 }
+.btn {
+  margin-left: 5px;
+  border: 2px solid green;
+  border-radius: 3px;
+  background-color: burlywood;
+}

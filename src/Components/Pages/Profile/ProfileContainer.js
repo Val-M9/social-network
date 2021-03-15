@@ -12,6 +12,7 @@ import {
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
+    const { getProfile, getStatus } = this.props;
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
@@ -19,8 +20,8 @@ class ProfileContainer extends React.Component {
         this.props.history.push("/login");
       }
     }
-    this.props.getProfile(userId);
-    this.props.getStatus(userId);
+    getProfile(userId);
+    getStatus(userId);
   }
   render() {
     return (

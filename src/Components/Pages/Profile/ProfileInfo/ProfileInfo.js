@@ -1,14 +1,14 @@
 import React from "react";
-import Preloader from "../../../common/Preloader/Preloader";
 import styles from "./ProfileInfo.module.css";
 import backgroundImage from "../../../../assets/images/view.jpg";
 import check from "../../../../assets/images/check.png";
 import cross from "../../../../assets/images/cross.png";
 import maleUser from "../../../../assets/images/maleUser.png";
 import ProfileStatus from "./ProfileStatus";
+import Preloader from "../../../common/Preloader/Preloader";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />;
   }
 
@@ -19,35 +19,27 @@ const ProfileInfo = (props) => {
       </div>
       <div className={styles.avatar}>
         <img
-          src={
-            props.profile.photos.large ? props.profile.photos.large : maleUser
-          }
+          src={profile.photos.large ? profile.photos.large : maleUser}
           alt="Avatar"
         />
       </div>
-      <div className={styles.name}>{props.profile.fullName}</div>
+      <div className={styles.name}>{profile.fullName}</div>
 
-      <div className={styles.description}>{props.profile.aboutMe}</div>
+      <div className={styles.description}>{profile.aboutMe}</div>
 
       <div className={styles.jobRequest}>
         Job request
-        <img
-          src={props.profile.lookingForAJob ? check : cross}
-          alt="Job Request"
-        />
+        <img src={profile.lookingForAJob ? check : cross} alt="Job Request" />
       </div>
       <div className={styles.jobRequestDescription}>
-        {props.profile.lookingForAJobDescription}
+        {profile.lookingForAJobDescription}
       </div>
       <div className={styles.contacts}>
         <h4>Contact Me</h4>
-        {props.profile.contacts.twitter}
+        {profile.contacts.twitter}
       </div>
       <div className={styles.status}>
-        <ProfileStatus
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
+        <ProfileStatus status={status} updateStatus={updateStatus} />
       </div>
     </div>
   );

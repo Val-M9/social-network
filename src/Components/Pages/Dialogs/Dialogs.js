@@ -4,16 +4,16 @@ import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import SendMessageForm from "./SendMessageForm";
 
-const Dialogs = (props) => {
-  let dialogsElements = props.dialogsData.dialogs.map((d) => (
+const Dialogs = ({ dialogsData, onSendMessage }) => {
+  let dialogsElements = dialogsData.dialogs.map((d) => (
     <DialogItem key={d.id} name={d.name} ava={d.ava} />
   ));
-  let messagesElements = props.dialogsData.messages.map((m) => (
+  let messagesElements = dialogsData.messages.map((m) => (
     <Message key={m.id} message={m.message} />
   ));
 
-  let onSendMessage = (values) => {
-    props.onSendMessage(values.newMessage);
+  let onMessageSend = (values) => {
+    onSendMessage(values.newMessage);
   };
 
   return (
@@ -21,7 +21,7 @@ const Dialogs = (props) => {
       <div>{dialogsElements}</div>
       <div className={styles.textInput}>
         {messagesElements}
-        <SendMessageForm onSubmit={onSendMessage} />
+        <SendMessageForm onSubmit={onMessageSend} />
       </div>
     </div>
   );

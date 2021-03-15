@@ -1,4 +1,6 @@
 import React from "react";
+import { Field } from "react-final-form";
+
 import styles from "./FormControl.module.css";
 
 export const FormControl = ({ input, meta, child, ...props }) => {
@@ -27,3 +29,12 @@ export const TextArea = (props) => {
     </FormControl>
   );
 };
+export const createField = (validators, name, component, placeholder, type) => (
+  <Field
+    validate={validators}
+    name={name}
+    component={component}
+    placeholder={placeholder}
+    type={type}
+  />
+);

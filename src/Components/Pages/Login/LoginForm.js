@@ -1,5 +1,5 @@
-import { Form, Field } from "react-final-form";
-import { Input } from "../../common/FormControls/FormControls";
+import { Form } from "react-final-form";
+import { createField, Input } from "../../common/FormControls/FormControls";
 import {
   maxLengthCreator,
   required,
@@ -7,44 +7,40 @@ import {
 } from "../../utils/validators";
 import styles from "./LoginForm.module.css";
 
-const LoginForm = (props) => {
+const LoginForm = ({ onSubmit }) => {
   return (
     <Form
       name="login"
       onSubmit={(values) => {
-        return props.onSubmit(values);
+        return onSubmit(values);
       }}
     >
       {({ handleSubmit, submitError }) => (
-        <form onSubmit={handleSubmit} className={styles.login}>
-          <Field
-            validate={composeValidators(required, maxLengthCreator(30))}
-            name="email"
-            component={Input}
-            placeholder={"Email"}
-          ></Field>
-          <Field
-            validate={composeValidators(required, maxLengthCreator(30))}
-            name={"password"}
-            component={Input}
-            placeholder={"Password"}
-            type="password"
-          >
-            {/* {({ input, meta }) => (
-              <div>
-                <input {...input} type="password" placeholder={"password"} />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )} */}
-          </Field>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.email}>
+            {createField(
+              composeValidators(required, maxLengthCreator(40)),
+              "email",
+              Input,
+              "Email",
+              null
+            )}
+          </div>
+          {createField(
+            composeValidators(required, maxLengthCreator(30)),
+            "password",
+            Input,
+            "Password",
+            "password"
+          )}
           <div>
             {submitError && <div style={{ color: "#800" }}>{submitError}</div>}
           </div>
           <div>
-            <Field component={"input"} name={"rememberMe"} type={"checkbox"} />
+            {createField(null, "rememberMe", Input, null, "checkbox")}
             Remember me
           </div>
-          <button>Login</button>
+          <button className={styles.button}>Login</button>
         </form>
       )}
     </Form>

@@ -1,11 +1,13 @@
 .wrapper {
   padding-left: 1rem;
+  color: rgb(70, 0, 92);
 }
 .post textarea {
   border-radius: 4px;
 }
 .post button {
-  background-color: rgb(190, 250, 244);
+  color: #fff;
+  background-color: rgb(17, 90, 83);
   border-radius: 5px;
   margin: auto 98px;
 }

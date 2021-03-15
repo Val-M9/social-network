@@ -1,0 +1,18 @@
+.wrapper {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.form__name {
+  position: relative;
+  top: -25px;
+  padding-right: 30px;
+}
+.email {
+  padding-bottom: 5px;
+}
+.button {
+  background-color: rgb(209, 209, 255);
+  border-radius: 3px;
+  width: 75px;
+}

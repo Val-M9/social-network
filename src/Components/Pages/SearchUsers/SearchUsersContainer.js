@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
+
 import {
   setCurrentPage,
   toggleFollowingProgress,
-  getUsersTC,
+  requestUsers,
   toggleFollowing,
-  // follow,
-  // unfollow,
+  follow,
+  unfollow,
 } from "../../../redux/Reducers/SearchUsersReducer";
 import SearchUsers from "./SearchUsers";
 import Preloader from "../../common/Preloader/Preloader";
@@ -21,11 +23,13 @@ import {
 
 class SearchUsersAPI extends React.Component {
   componentDidMount() {
-    this.props.getUsersTC(this.props.currentPage, this.props.pageSize);
+    const { currentPage, pageSize } = this.props;
+    this.props.requestUsers(currentPage, pageSize);
   }
 
   onChangePage = (pageNumber) => {
-    this.props.getUsersTC(pageNumber, this.props.pageSize);
+    const { requestUsers, pageSize } = this.props;
+    requestUsers(pageNumber, pageSize);
   };
 
   render = () => {
@@ -37,8 +41,8 @@ class SearchUsersAPI extends React.Component {
           usersTotalCount={this.props.usersTotalCount}
           pageSize={this.props.pageSize}
           toggleFollowing={this.props.toggleFollowing}
-          // follow={this.props.follow}
-          // unfollow={this.props.unfollow}
+          follow={this.props.follow}
+          unfollow={this.props.unfollow}
           currentPage={this.props.currentPage}
           onChangePage={this.onChangePage}
           followingInProgress={this.props.followingInProgress}
@@ -49,25 +53,31 @@ class SearchUsersAPI extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  return {
-    userId: state.usersPage.users.map((u) => {
-      return u.id;
-    }),
-    usersData: getUsersData(state),
-    usersTotalCount: getUsersTotalCount(state),
-    pageSize: getPageSize(state),
-    currentPage: getCurrentPage(state),
-    isFetching: getIsFetching(state),
-    followingInProgress: getFollowingProgress(state),
-  };
+  if (state.usersPage.users)
+    return {
+      userId: state.usersPage.users.map((u) => {
+        return u.id;
+      }),
+      isFollowed: state.usersPage.users.map((u) => {
+        return u.followed;
+      }),
+      usersData: getUsersData(state),
+      usersTotalCount: getUsersTotalCount(state),
+      pageSize: getPageSize(state),
+      currentPage: getCurrentPage(state),
+      isFetching: getIsFetching(state),
+      followingInProgress: getFollowingProgress(state),
+    };
 };
 
-const SearchUsersContainer = connect(mapStateToProps, {
-  setCurrentPage,
-  toggleFollowingProgress,
-  getUsersTC,
-  toggleFollowing,
-  // follow,
-  // unfollow,
-})(SearchUsersAPI);
+const SearchUsersContainer = compose(
+  connect(mapStateToProps, {
+    setCurrentPage,
+    toggleFollowingProgress,
+    requestUsers,
+    // toggleFollowing,
+    follow,
+    unfollow,
+  })
+)(SearchUsersAPI);
 export default SearchUsersContainer;

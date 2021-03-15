@@ -3,15 +3,17 @@ import styles from "./Header.module.css";
 import logo from "../../assets/images/logo.jfif";
 import { NavLink } from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({ login, logout, isAuth }) => {
   return (
     <header className={styles.header}>
       <img src={logo} alt="logo" />
       <div className={styles.loginBlock}>
-        {props.isAuth ? (
+        {isAuth ? (
           <div>
-            {props.login}
-            <button onClick={props.logout}>Logout</button>
+            {login}
+            <button className={styles.btn} onClick={logout}>
+              Logout
+            </button>
           </div>
         ) : (
           <NavLink to={"/login"}>Login</NavLink>

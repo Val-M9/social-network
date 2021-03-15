@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { compose } from "redux";
 
 import "./App.css";
 import NavbarContainer from "./Components/Navbar/NavbarContainer";
@@ -46,4 +47,7 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App);

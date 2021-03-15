@@ -1,25 +1,22 @@
 import React from "react";
-import { Form, Field } from "react-final-form";
-import { TextArea } from "../../../common/FormControls/FormControls";
+import { Form } from "react-final-form";
+import {
+  createField,
+  TextArea,
+} from "../../../common/FormControls/FormControls";
 import { maxLengthCreator } from "../../../utils/validators";
 
-const AddPostForm = (props) => {
+const AddPostForm = ({ onSubmit }) => {
   return (
     <Form
       name="addPost"
       onSubmit={(values) => {
-        props.onSubmit(values);
+        onSubmit(values);
       }}
     >
       {({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div>
-            <Field
-              validate={maxLengthCreator(10)}
-              component={TextArea}
-              name={"addNewPost"}
-            />
-          </div>
+          {createField(maxLengthCreator(50), "addNewPost", TextArea)}
           <button>Add Post</button>
         </form>
       )}

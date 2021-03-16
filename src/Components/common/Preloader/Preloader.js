@@ -1,4 +1,4 @@
-import preloader from "../../../assets/images/Infinity.svg";
+import loader from "../../../assets/images/805.svg";
 
 const Preloader = () => {
   return (
@@ -6,10 +6,9 @@ const Preloader = () => {
       <img
         style={{
           display: "block",
-          marginLeft: "auto",
-          marginRight: "auto",
+          margin: "50px auto",
         }}
-        src={preloader}
+        src={loader}
         alt="Loading..."
       />
     </div>

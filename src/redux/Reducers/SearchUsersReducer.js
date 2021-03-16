@@ -20,38 +20,24 @@ let initialState = {
 
 const searchUsersReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case FOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map((u) => {
-    //       if (u.id === action.userId) {
-    //         return { ...u, followed: true };
-    //       }
-    //       return u;
-    //     }),
-    //   };
-    // case UNFOLLOW:
-    //   return {
-    //     ...state,
-    //     users: state.users.map((u) => {
-    //       if (u.id === action.userId) {
-    //         return { ...u, followed: false };
-    //       }
-    //       return u;
-    //     }),
-    //   };
     case FOLLOW:
       return {
         ...state,
-        users: updateObjectInArray(state.users, action.userId, "id", {
-          followed: true,
+        users: state.users.map((u) => {
+          if (u.id === action.userId) {
+            return { ...u, followed: true };
+          }
+          return u;
         }),
       };
     case UNFOLLOW:
       return {
         ...state,
-        users: updateObjectInArray(state.users, action.userId, "id", {
-          followed: false,
+        users: state.users.map((u) => {
+          if (u.id === action.userId) {
+            return { ...u, followed: false };
+          }
+          return u;
         }),
       };
     case SET_USERS:
@@ -122,11 +108,10 @@ const followUnfollowFlow = async (
   dispatch(toggleFollowingProgress(true, userId));
   let response = await apiMethod(userId);
   if (response.data.resultCode === 0) {
-    dispatch(actionCreator(userId));
+    return dispatch(actionCreator(userId));
   }
   dispatch(toggleFollowingProgress(false, userId));
 };
-
 export const follow = (userId) => {
   return async (dispatch) => {
     const apiMethod = usersAPI.follow.bind(usersAPI);
@@ -143,17 +128,6 @@ export const unfollow = (userId) => {
 export default searchUsersReducer;
 
 // think later how to do conditions if()... isFollowed returned an array by method map, so how to eject from it one value I need each time
-
-// case TOGGLE_FOLLOWING:
-//   return {
-//     ...state,
-//     users: state.users.map((u) => {
-//       if (u.id === action.userId) {
-//         return { ...u, followed: action.isFollowed };
-//       }
-//       return u;
-//     }),
-//   };
 
 // export const toggleFollowing = (userId, isFollowed) => {
 //   return async (dispatch) => {

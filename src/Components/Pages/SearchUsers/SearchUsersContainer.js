@@ -6,7 +6,6 @@ import {
   setCurrentPage,
   toggleFollowingProgress,
   requestUsers,
-  toggleFollowing,
   follow,
   unfollow,
 } from "../../../redux/Reducers/SearchUsersReducer";
@@ -40,7 +39,6 @@ class SearchUsersAPI extends React.Component {
           usersData={this.props.usersData}
           usersTotalCount={this.props.usersTotalCount}
           pageSize={this.props.pageSize}
-          toggleFollowing={this.props.toggleFollowing}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
           currentPage={this.props.currentPage}
@@ -75,7 +73,6 @@ const SearchUsersContainer = compose(
     setCurrentPage,
     toggleFollowingProgress,
     requestUsers,
-    // toggleFollowing,
     follow,
     unfollow,
   })

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SearchUsers.module.css";
-import Paginator from "../../common/Paginator.js/Paginator";
+import Paginator from "../../common/Paginator/Paginator";
 import User from "./User";
 
 const SearchUsers = (props) => {
@@ -21,7 +21,7 @@ const SearchUsers = (props) => {
         <Paginator
           currentPage={props.currentPage}
           pageSize={props.pageSize}
-          usersTotalCount={props.usersTotalCount}
+          itemsTotalCount={props.usersTotalCount}
           onChangePage={props.onChangePage}
         />
       </div>

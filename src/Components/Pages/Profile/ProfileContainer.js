@@ -4,14 +4,10 @@ import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
 import Profile from "./Profile";
-import {
-  getProfile,
-  getStatus,
-  updateStatus,
-} from "../../../redux/Reducers/ProfileReducer";
+import { getProfile, getStatus, updateStatus } from "../../../redux/Reducers/ProfileReducer";
 
 class ProfileContainer extends React.Component {
-  componentDidMount() {
+  refreshComponent() {
     const { getProfile, getStatus } = this.props;
     let userId = this.props.match.params.userId;
     if (!userId) {
@@ -22,6 +18,14 @@ class ProfileContainer extends React.Component {
     }
     getProfile(userId);
     getStatus(userId);
+  }
+  componentDidMount() {
+    this.refreshComponent();
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.userId != prevProps.match.params.userId) {
+      this.refreshComponent();
+    }
   }
   render() {
     return (

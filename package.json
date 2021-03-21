@@ -2,10 +2,8 @@
   "name": "draft",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Val-M9.github.io/social-network",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "final-form": "^4.20.1",
     "react": "^17.0.1",
@@ -14,7 +12,6 @@
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
-    "react-test-renderer": "^17.0.1",
     "redux": "^4.0.5",
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
@@ -25,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
-    "enzyme-adapter-react-17-updated": "^1.0.2"
+    "gh-pages": "^3.1.0",
+    "react-test-renderer": "^17.0.1"
   }
 }

@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { Route, withRouter, BrowserRouter } from "react-router-dom";
+import { Route, withRouter, HashRouter } from "react-router-dom";
 import { connect, Provider } from "react-redux";
 import { compose } from "redux";
 
 import "./App.css";
-import NavbarContainer from "./Components/Navbar/NavbarContainer";
-import Friends from "./Components/Pages/Friends/Friends";
-import DialogsContainer from "./Components/Pages/Dialogs/DialogsContainer";
-import SearchUsersContainer from "./Components/Pages/SearchUsers/SearchUsersContainer";
-import ProfileContainer from "./Components/Pages/Profile/ProfileContainer";
+import Navbar from "./Components/Navbar/Navbar";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import Login from "./Components/Pages/Login/Login";
 import { initializeApp } from "./redux/Reducers/AppReducer";
 import Preloader from "./Components/common/Preloader/Preloader";
 import store from "./redux/ReduxStore";
+
+const Login = React.lazy(() => import("./Components/Pages/Login/Login"));
+const ProfileContainer = React.lazy(() => import("./Components/Pages/Profile/ProfileContainer"));
+const DialogsContainer = React.lazy(() => import("./Components/Pages/Dialogs/DialogsContainer"));
+const SearchUsersContainer = React.lazy(() => import("./Components/Pages/SearchUsers/SearchUsersContainer"));
 
 class App extends Component {
   componentDidMount() {
@@ -26,17 +26,15 @@ class App extends Component {
     return (
       <div className="app-wrapper">
         <HeaderContainer />
-        <NavbarContainer data={this.props.navigation} />
-        <div className="app-wrapper-content">
-          <Route path="/login" render={() => <Login />} />
-          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route
-            path="/friends"
-            render={() => <Friends friendsData={this.props.friendsPage} />}
-          />
-          <Route path="/search-users" render={() => <SearchUsersContainer />} />
-        </div>
+        <Navbar navData={this.props.navigation} />
+        <React.Suspense fallback={<Preloader />}>
+          <div className="app-wrapper-content">
+            <Route path="/login" render={() => <Login />} />
+            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+            <Route path="/dialogs" render={() => <DialogsContainer />} />
+            <Route path="/search-users" render={() => <SearchUsersContainer />} />
+          </div>
+        </React.Suspense>
       </div>
     );
   }
@@ -48,18 +46,15 @@ const mapStateToProps = (state) => ({
   friendsPage: state.friendsPage,
 });
 
-const AppContainer = compose(
-  withRouter,
-  connect(mapStateToProps, { initializeApp })
-)(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
 
 const SocialNetworkApp = (props) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 export default SocialNetworkApp;

@@ -2,16 +2,19 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
-const Navbar = ({ path, name }) => {
-  return (
-    <nav className={styles.nav}>
-      <div className={styles.item}>
-        <NavLink to={path} activeClassName={styles.activeLink}>
-          {name}
-        </NavLink>
-      </div>
-    </nav>
-  );
+const Navbar = ({ navData }) => {
+  let navItems = navData.map((item) => {
+    return (
+      <NavLink
+        key={item.id}
+        to={item.path}
+        className={`${styles.nav} ${item.id === 5 ? styles.lastItem : styles.item}`}
+        activeClassName={styles.activeLink}
+      >
+        {item.name}
+      </NavLink>
+    );
+  });
+  return <div>{navItems}</div>;
 };
-
 export default Navbar;

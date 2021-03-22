@@ -8,7 +8,7 @@ const Navbar = ({ navData }) => {
       <NavLink
         key={item.id}
         to={item.path}
-        className={`${styles.nav} ${item.id === 5 ? styles.lastItem : styles.item}`}
+        className={`${styles.nav} ${item.id === navData.length ? styles.lastItem : styles.item}`}
         activeClassName={styles.activeLink}
       >
         {item.name}

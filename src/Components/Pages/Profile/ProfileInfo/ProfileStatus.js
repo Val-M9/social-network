@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./ProfileInfo.module.css";
 
 const ProfileStatus = (props) => {
   const [editInput, setEditInput] = useState(false);
@@ -22,7 +23,7 @@ const ProfileStatus = (props) => {
   };
 
   return (
-    <div onDoubleClick={toggleInput}>
+    <div className={styles.status} onClick={toggleInput}>
       {editInput ? (
         <input
           value={status}
@@ -30,13 +31,10 @@ const ProfileStatus = (props) => {
           onKeyDown={onPressEnter}
           onBlur={toggleInput}
           autoFocus={true}
+          maxLength="60"
         ></input>
       ) : (
-        <span>
-          {props.status || (
-            <span style={{ color: "#999" }}>Here can be your status</span>
-          )}
-        </span>
+        <div>{props.status || <label style={{ color: "#999" }}>Here can be your status</label>}</div>
       )}
     </div>
   );

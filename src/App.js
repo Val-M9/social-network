@@ -14,6 +14,7 @@ const Login = React.lazy(() => import("./Components/Pages/Login/Login"));
 const ProfileContainer = React.lazy(() => import("./Components/Pages/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./Components/Pages/Dialogs/DialogsContainer"));
 const SearchUsersContainer = React.lazy(() => import("./Components/Pages/SearchUsers/SearchUsersContainer"));
+const Settings = React.lazy(() => import("./Components/Pages/Settings/Settings"));
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +34,7 @@ class App extends Component {
             <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
             <Route path="/dialogs" render={() => <DialogsContainer />} />
             <Route path="/search-users" render={() => <SearchUsersContainer />} />
+            <Route path="/settings" render={() => <Settings />} />
           </div>
         </React.Suspense>
       </div>
@@ -48,7 +50,7 @@ const mapStateToProps = (state) => ({
 
 const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
 
-const SocialNetworkApp = (props) => {
+const SocialNetworkApp = () => {
   return (
     <HashRouter>
       <Provider store={store}>

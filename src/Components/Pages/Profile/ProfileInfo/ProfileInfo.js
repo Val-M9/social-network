@@ -1,46 +1,25 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
-import backgroundImage from "../../../../assets/images/view.jpg";
-import check from "../../../../assets/images/check.png";
-import cross from "../../../../assets/images/cross.png";
-import maleUser from "../../../../assets/images/maleUser.png";
+
 import ProfileStatus from "./ProfileStatus";
 import Preloader from "../../../common/Preloader/Preloader";
+import ProfileData from "./ProfileData";
 
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
   if (!profile) {
     return <Preloader />;
   }
+  const setMainPhoto = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
+  };
 
   return (
     <div className={styles.profileWrapper}>
-      <div className={styles.view}>
-        <img src={backgroundImage} alt="Sunset" />
-      </div>
-      <div className={styles.avatar}>
-        <img
-          src={profile.photos.large ? profile.photos.large : maleUser}
-          alt="Avatar"
-        />
-      </div>
-      <div className={styles.name}>{profile.fullName}</div>
+      <ProfileData profile={profile} isOwner={isOwner} setMainPhoto={setMainPhoto} />
 
-      <div className={styles.description}>{profile.aboutMe}</div>
-
-      <div className={styles.jobRequest}>
-        Job request
-        <img src={profile.lookingForAJob ? check : cross} alt="Job Request" />
-      </div>
-      <div className={styles.jobRequestDescription}>
-        {profile.lookingForAJobDescription}
-      </div>
-      <div className={styles.contacts}>
-        <h4>Contact Me</h4>
-        {profile.contacts.twitter}
-      </div>
-      <div className={styles.status}>
-        <ProfileStatus status={status} updateStatus={updateStatus} />
-      </div>
+      <ProfileStatus status={status} updateStatus={updateStatus} />
     </div>
   );
 };

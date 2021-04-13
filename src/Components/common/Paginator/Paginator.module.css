@@ -1,0 +1,21 @@
+.selectedPage {
+  font-weight: bold;
+}
+.paginator {
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.button {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  outline:none;
+  margin: 5px;
+}
+.pageNumber{
+  padding: 3px;
+  border: 1px solid green;
+}

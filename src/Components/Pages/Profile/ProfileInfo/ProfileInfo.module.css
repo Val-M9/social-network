@@ -83,14 +83,14 @@
 }
 .uploadPhoto {
   position: relative;
-  opacity: 30%;
+  opacity: 0.3;
   top: -217px;
   left: 5px;
   width: 25px;
   height: 25px;
 }
 .uploadPhoto:hover {
-  opacity: 100%;
+  opacity: 1;
 }
 input[type="file"] {
   display: none;

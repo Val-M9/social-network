@@ -1,2 +1,0 @@
-(this.webpackJsonpdraft=this.webpackJsonpdraft||[]).push([[7],{210:function(t,i,h){"use strict";h.r(i);var n=h(3);i.default=function(t){return Object(n.jsx)("div",{children:"hihhihi"})}}}]);
-//# sourceMappingURL=7.15c4edc8.chunk.js.map
